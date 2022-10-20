@@ -1,12 +1,6 @@
-<script>
-
-</script>
-
 <template>
-Cilma 
-  <RouterView />
+  Clima
 </template>
 
 <style>
-
 </style>

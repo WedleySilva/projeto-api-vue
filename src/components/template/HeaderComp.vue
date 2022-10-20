@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="menu-esquerdo">
+    <div class="menu">
       <span> <RouterLink to="/">Home</RouterLink> </span>
       <span>|</span>
       <span> <RouterLink to="/weather">Cilma</RouterLink> </span>
@@ -10,16 +10,16 @@
   </header>
 </template>
 
-<style>
+<style >
 
 header span {
   padding: 0 20px;
 }
-
 header {
-  height: 10%;
-  background-color: #454663;
-  color: #9bfae2;
+  height: 120px;
+  width: 100%;
+  background-color: #16141A;
+  color: white;
   font-size: 1.3rem;
   display: flex;
   align-items: center;
