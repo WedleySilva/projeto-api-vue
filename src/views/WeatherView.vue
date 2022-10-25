@@ -1,5 +1,5 @@
 <template>
-  Clima
+  Clima 
 </template>
 
 <style>
