@@ -1,5 +1,5 @@
 {
-  "name": "projeto-router",
+  "name": "projeto-api-vue",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -21,5 +21,11 @@
     "eslint-plugin-vue": "^8.2.0",
     "prettier": "^2.5.1",
     "vite": "^2.9.5"
-  }
+  },
+
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wZmEuZm9yZWNhLmNvbVwvYXV0aG9yaXplXC90b2tlbiIsImlhdCI6MTY2NTQ4OTY2MywiZXhwIjo5OTk5OTk5OTk5LCJuYmYiOjE2NjU0ODk2NjMsImp0aSI6ImRmODQ3Y2M5MjEzMDdjNmYiLCJzdWIiOiJ3ZWRsZXlzaWx2YTIxMDUiLCJmbXQiOiJYRGNPaGpDNDArQUxqbFlUdGpiT2lBPT0ifQ.MD8iZAi3M5WRUA0d0r0Xd-DgrI_5WB0LrkaRy8wkLzg",
+    "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wZmEuZm9yZWNhLmNvbVwvYXV0aG9yaXplXC90b2tlbiIsImlhdCI6MTY2NTQ4OTY2MywiZXhwIjo5OTk5OTk5OTk5LCJuYmYiOjE2NjU0ODk2NjMsImp0aSI6ImRmODQ3Y2M5MjEzMDdjNmYiLCJzdWIiOiJ3ZWRsZXlzaWx2YTIxMDUiLCJmbXQiOiJYRGNPaGpDNDArQUxqbFlUdGpiT2lBPT0ifQ.MD8iZAi3M5WRUA0d0r0Xd-DgrI_5WB0LrkaRy8wkLzg"
+
 }
+
+
