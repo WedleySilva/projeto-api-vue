@@ -1,5 +1,6 @@
 <template>
-  Clima 
+  <div id="weather-app">
+  </div>
 </template>
 
 <style>
