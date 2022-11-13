@@ -28,4 +28,26 @@ export default class ForecaAPI {
       return Promise.reject(e);
     }
   }
+  
+  async NowCast(id) {
+    try {
+      const { data } = await axios.get(`/15minutely/${id}`);
+      return Promise.resolve(data);
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
+
+  async Daily(id) { 
+    // conferir se realmente é id e não query
+    try {
+      const { data } = await axios.get(`/daily/${id}`);
+      return Promise.resolve(data);
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
+
 }

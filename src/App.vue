@@ -19,11 +19,12 @@ export default {
 </template>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 body {
-  background-color: #50545c;
+  background-color: #BFC9DB;
   margin: 0;
+  color: #50545C;
 }
 
 a {
@@ -32,6 +33,6 @@ a {
 }
 
 .router-link-active {
-  color: #98b7e1;
+  color: #50545C;
 }
 </style>

@@ -11,17 +11,18 @@
 </template>
 
 <style >
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 header span {
   padding: 0 20px;
 }
 
 header {
-  
+  font-family: 'Nanum Gothic', sans-serif;
   padding: 40px;
   text-align: center;
-  background: black;
-  color: white;
+  background: #78A6F5;
+  color: #F9F9F9;
   font-size: 30px;
 }
 
