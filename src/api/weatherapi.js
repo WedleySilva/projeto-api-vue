@@ -18,4 +18,14 @@ export default class ForecaAPI {
       return Promise.reject(e);
     }
   }
+
+  async ShowHourly(id) {
+    try {
+      const { data } = await axios.get(`/hour/${id}`);
+      return Promise.resolve(data);
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
 }

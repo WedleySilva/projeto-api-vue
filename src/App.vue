@@ -1,17 +1,21 @@
 <script>
 import HeaderComp from "@/components/template/HeaderComp.vue";
+import MainComp from "@/components/template/MainComp.vue";
 import FooterComp from "@/components/template/FooterComp.vue";
+
 
 export default {
   name: "HomeView",
-  components: { HeaderComp, FooterComp },
+  components: { HeaderComp, FooterComp, MainComp },
 };
 </script>
 
 <template>
   <header-comp />
   <RouterView />
+  <MainComp />
   <footer-comp />
+
 </template>
 
 <style>

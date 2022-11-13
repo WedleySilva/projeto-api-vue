@@ -23,7 +23,6 @@ header {
   background: black;
   color: white;
   font-size: 30px;
-  
 }
 
 </style>

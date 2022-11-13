@@ -2,7 +2,8 @@
 </script>
 
 <template>
-Ultima pagina
+    <main>Ultima pagina</main>
+
 </template>
 
 <style>
