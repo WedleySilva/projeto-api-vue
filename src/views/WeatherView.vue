@@ -10,80 +10,51 @@ export default {
       nova_hora: [],
       nova_previsão: [],
       novo_dia: [],
+      location_info: [],
     };
   },
   async created() {
-    const resultados = await forecaApi.LocationSearch("Brasil");
-    this.resultados = resultados.locations;
-    console.log(this.resultados);
+    // const resultados = await forecaApi.LocationSearch("Brasil");
+    // this.resultados = resultados.locations;
+    // console.log(this.resultados);
 
-    const atual_clima = await forecaApi.CurrentWeather(103469058);
+    const location_info = await forecaApi.LocationInfo(103459712);
+    this.location_info = location_info;
+    console.log(this.location_info);
+
+    const atual_clima = await forecaApi.CurrentWeather(103459712);
     this.atual_clima = atual_clima.current;
-    // console.log(this.atual_clima);
-
-    const hora_por_hora = await forecaApi.ShowHourly(102643743);
-    this.hora_por_hora = hora_por_hora.hourly;
-    console.log(this.hora_por_hora);
-
-    const nova_previsão = await forecaApi.NowCast(102643743);
-    this.nova_previsão = nova_previsão.nowcast;
-    console.log(this.nova_previsão);
-
-    const novo_dia = await forecaApi.Daily(102643743);
-    this.novo_dia = novo_dia.daily;
-    console.log(this.novo_dia);
-
+    console.log(this.atual_clima);
   },
-
-  methods: {
-    async clima(id) {
-      const novo_clima = await forecaApi.CurrentWeather(id);
-      return novo_clima.promise.current;
-      //pra cada resultado, quero uma temperatura!!
-    },
-
-    async hora(id) {
-      const nova_hora = await forecaApi.ShowHourly(id);
-      return nova_hora.promise.hourly;
-    },
-
-    async previsão(id) {
-      const nova_previsão = await forecaApi.NowCast(id);
-      return nova_previsão.promise.nowcast;
-    },
-
-    // computed: {
-    //   teste() {
-    //     return console.log(this.clima(103469058));
-    //   },
-    // },
-
-  },
-  async diaria(id) {
-      const novo_dia = await forecaApi.ShowHourly(id);
-      return novo_dia.promise.daily;
-    },
 };
-
 </script>
 
 <template>
   <main class="main_weather">
-    <div
-      id="weather-app"
-      v-for="resultado of resultados"
-      :key="resultado.id"
-      class="maindiv"
-    ></div>
-    <div class="search-box">
-      <!-- arrumar a barra de pesquisa -->
-      <input type="search" class="search-bar" placeholder="Pesquisar" />
-      <!-- {{ resultado.name }}  -->
-      <!-- {{ resultado.id }}
-      {{ resultado.hora }} -->
-
-      <!-- <button @click="teste"></button>
-      <div>{{ clima(resultado.id) }} a</div> -->
+    <div class="content">
+      <h1 class="climah1">Clima</h1>
+      <ul class="climaul">
+        <h3>
+          <li>País: {{ location_info.country }}</li>
+          <li>Cidade: {{ location_info.name }}</li>
+          <li>Hora: {{ atual_clima.time }}</li>
+          <li>Temperatura: {{ atual_clima.temperature }} °C</li>
+          <li>Sensação Térmica: {{ atual_clima.feelsLikeTemp }} °</li>
+          <li>Umidade: {{ atual_clima.relHumidity }}</li>
+          <li>Pressão: {{ atual_clima.pressure }} atm</li>
+          <li>Velocidade do Vento: {{ atual_clima.windSpeed }} m/s</li>
+          <li>Probabilidade de trovões: {{ atual_clima.thunderProb }} %</li>
+        </h3>
+        <img class="icon"
+          src="https://cdn-icons-png.flaticon.com/512/3937/3937493.png"
+        />
+      </ul>
+    </div>
+    <div class="content2">
+      <h1 class="dadosh1">Dados</h1>
+      <h3 class="textdados">
+        Passar parametros para portugues, celsius e colocar imagens.
+      </h3>
     </div>
   </main>
 </template>
@@ -93,39 +64,73 @@ export default {
   height: 600px;
 }
 
-.search-box {
+.textdados {
+  position: relative;
+  padding-top: 15px;
   position: absolute;
-  top: 90px;
-  text-align: center;
-  align-items: center;
-  width: 844px;
-  height: 144px;
-  padding: 40px;
-  margin-bottom: 30px;
-}
-.search-box .search-bar {
-  font-family: "Nanum Gothic", sans-serif;
-  display: block;
-  width: 100%;
-  padding: 15px;
-  color: #50545c;
-  font-size: 20px;
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-  box-shadow: 0px 0px 16px #50545c;
-  background-color: #e1e1e180;
-  border-radius: 0px 16px 0px 16px;
-  transition: 0.4s;
-}
-.search-box .search-bar:focus {
-  box-shadow: 0px 0px 16px #06265c;
-  background-color: #e1e1e180;
-  border-radius: 16px 0px 16px 0px;
+  top: 50%;
+  padding: 30px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
-.search-bar {
-  display: block;
+.icon {
+  height: 120px;
+  width: 120px;
+  position: relative;
+  left: 30%;
+  padding: 20px;
+  
+}
+
+.climaul {
+  padding-top: 15px;
+  position: relative;
+  margin-top: 20%;
+  list-style: none;
+  line-height: 1.5;
+}
+
+.content2 {
+  position: relative;
+  height: 250px;
+  width: 1200px;
+  margin: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid;
+  border-color: black;
+  border-radius: 0px 16px 0px 16px;
+}
+
+.dadosh1 {
+  position: absolute;
+  padding-top: 15px;
+  top: 10px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.climah1 {
+  position: absolute;
+  padding-top: 15px;
+  top: 20px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  top: 20px;
+  border: 2px solid;
+  border-color: black;
+  height: 600px;
+  width: 500px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px 0px 16px 0px;
 }
 </style>
