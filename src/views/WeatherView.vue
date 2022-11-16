@@ -5,65 +5,94 @@ const forecaApi = new ForecaAPI();
 export default {
   data() {
     return {
+      search: "",
+      localizacoes: [],
       resultados: [],
       atual_clima: [],
       nova_hora: [],
       nova_previsão: [],
       novo_dia: [],
       location_info: [],
+      resultados: [],
     };
   },
+
   async created() {
+    await this.atualizarDados(103459712);
     // const resultados = await forecaApi.LocationSearch("Brasil");
     // this.resultados = resultados.locations;
     // console.log(this.resultados);
+  },
+  methods: {
+    async buscar() {
+      this.resultados = [];
+      if (this.search.trim() !== "") {
+        this.localizacoes = await forecaApi.LocationSearch(this.search);
+        for (const local of this.localizacoes) {
+          await this.atualizarDados(local.id);
+        }
+      }
+    },
+    async atualizarDados(local) {
+      const location_info = await forecaApi.LocationInfo(local); // this.location_info = location_info;
+      // console.log(this.location_info);
 
-    const location_info = await forecaApi.LocationInfo(103459712);
-    this.location_info = location_info;
-    console.log(this.location_info);
-
-    const atual_clima = await forecaApi.CurrentWeather(103459712);
-    this.atual_clima = atual_clima.current;
-    console.log(this.atual_clima);
+      const dados_clima = await forecaApi.CurrentWeather(local);
+      const atual_clima = dados_clima.current;
+      // console.log(this.atual_clima);
+      this.resultados.push({ location_info, atual_clima });
+    },
   },
 };
 </script>
 
 <template>
-  <main class="main_weather">
-    <div class="content">
-      <h1 class="climah1">Clima</h1>
+  <article>
+    <p>
+      <span> Busca: </span>
+      <input type="text" v-model="search" placeholder="Buscar localização" />
+      <button @click="buscar">Buscar</button>
+    </p>
+
+    <div v-if="localizacoes.length > 0">
+      <h2>Localizações</h2>
+      <p
+        v-for="local of localizacoes"
+        :key="local.id"
+        @click="atualizarDados(local.id)"
+      >
+        {{ local.name }} / {{ local.adminArea }} {{ local.country }} /
+        {{ local.timezone }}
+      </p>
+    </div>
+  </article>
+  <main>
+    <div class="content" v-for="(item, i) of resultados" :key="i">
+      <h1 class="climah1">Clima {{ item.location_info.name }}</h1>
       <ul class="climaul">
         <h3>
-          <li>País: {{ location_info.country }}</li>
-          <li>Cidade: {{ location_info.name }}</li>
-          <li>Hora: {{ atual_clima.time }}</li>
-          <li>Temperatura: {{ atual_clima.temperature }} °C</li>
-          <li>Sensação Térmica: {{ atual_clima.feelsLikeTemp }} °</li>
-          <li>Umidade: {{ atual_clima.relHumidity }}</li>
-          <li>Pressão: {{ atual_clima.pressure }} atm</li>
-          <li>Velocidade do Vento: {{ atual_clima.windSpeed }} m/s</li>
-          <li>Probabilidade de trovões: {{ atual_clima.thunderProb }} %</li>
+          <li>País: {{ item.location_info.country }}</li>
+          <li>Cidade: {{ item.location_info.name }}</li>
+          <li>Hora: {{ item.atual_clima.time }}</li>
+          <li>Temperatura: {{ item.atual_clima.temperature }} °C</li>
+          <li>Sensação Térmica: {{ item.atual_clima.feelsLikeTemp }} °</li>
+          <li>Umidade: {{ item.atual_clima.relHumidity }}</li>
+          <li>Pressão: {{ item.atual_clima.pressure }} atm</li>
+          <li>Velocidade do Vento: {{ item.atual_clima.windSpeed }} m/s</li>
+          <li>
+            Probabilidade de trovões: {{ item.atual_clima.thunderProb }} %
+          </li>
         </h3>
-        <img class="icon"
+        <img
+          class="icon"
           src="https://cdn-icons-png.flaticon.com/512/3937/3937493.png"
         />
       </ul>
-    </div>
-    <div class="content2">
-      <h1 class="dadosh1">Dados</h1>
-      <h3 class="textdados">
-        Passar parametros para portugues, celsius e colocar imagens.
-      </h3>
     </div>
   </main>
 </template>
 
 <style>
-.main_weather {
-  height: 600px;
-}
-
 .textdados {
   position: relative;
   padding-top: 15px;
@@ -81,7 +110,6 @@ export default {
   position: relative;
   left: 30%;
   padding: 20px;
-  
 }
 
 .climaul {

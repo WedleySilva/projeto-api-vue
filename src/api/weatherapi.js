@@ -3,14 +3,14 @@ export default class ForecaAPI {
   async LocationSearch(query) {
     try {
       const { data } = await axios.get(`/location/search/${query}`);
-      return Promise.resolve(data);
+      return Promise.resolve(data.locations);
     } catch (e) {
       console.log(e);
       return Promise.reject(e);
     }
   }
 
-  async LocationInfo(id) { 
+  async LocationInfo(id) {
     try {
       const { data } = await axios.get(`/location/${id}`);
       return Promise.resolve(data);
@@ -19,8 +19,6 @@ export default class ForecaAPI {
       return Promise.reject(e);
     }
   }
-
-
 
   async CurrentWeather(id) {
     try {

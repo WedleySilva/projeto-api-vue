@@ -7,5 +7,6 @@
 main {
   font-family: 'Nanum Gothic', sans-serif;
   height: 320px;
+  
 }
 </style>
