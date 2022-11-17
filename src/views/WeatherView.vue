@@ -75,10 +75,10 @@ export default {
           <li>Cidade: {{ item.location_info.name }}</li>
           <li>Hora: {{ item.atual_clima.time }}</li>
           <li>Temperatura: {{ item.atual_clima.temperature }} °C</li>
-          <li>Sensação Térmica: {{ item.atual_clima.feelsLikeTemp }} °</li>
-          <li>Umidade: {{ item.atual_clima.relHumidity }}</li>
+          <li>Sensação Térmica: {{ item.atual_clima.feelsLikeTemp }} °C</li>
+          <li>Umidade: {{ item.atual_clima.relHumidity }} %</li>
           <li>Pressão: {{ item.atual_clima.pressure }} atm</li>
-          <li>Velocidade do Vento: {{ item.atual_clima.windSpeed }} m/s</li>
+          <li>Velocidade do Vento: {{ item.atual_clima.windSpeed }} km/h</li>
           <li>
             Probabilidade de trovões: {{ item.atual_clima.thunderProb }} %
           </li>
@@ -93,20 +93,14 @@ export default {
 </template>
 
 <style>
+
+body {
+  color: black;
+}
+
 .p {
   display: grid;
   grid-template-columns: 500px 500px 500px;
-}
-
-.textdados {
-  position: relative;
-  padding-top: 15px;
-  position: absolute;
-  top: 50%;
-  padding: 30px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
 }
 
 .icon {
@@ -118,6 +112,7 @@ export default {
 }
 
 .climaul {
+  color: black;
   padding-top: 15px;
   position: relative;
   margin-top: 20%;
@@ -125,28 +120,8 @@ export default {
   line-height: 1.5;
 }
 
-.content2 {
-  position: relative;
-  height: 250px;
-  width: 1200px;
-  margin: 45px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 2px solid;
-  border-color: black;
-  border-radius: 0px 16px 0px 16px;
-}
-
-.dadosh1 {
-  position: absolute;
-  padding-top: 15px;
-  top: 10px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
 .climah1 {
+  color: black;
   position: absolute;
   padding-top: 15px;
   top: 20px;
@@ -156,9 +131,10 @@ export default {
 }
 
 .content {
+  background-color: #78A6F5;
   top: 20px;
   border: 2px solid;
-  border-color: black;
+  border-color: white;
   height: 600px;
   width: 400px;
   position: relative;
