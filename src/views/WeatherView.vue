@@ -51,7 +51,7 @@ export default {
     <p>
       <span> Busca: </span>
       <input type="text" v-model="search" placeholder="Buscar localização" />
-      <button @click="buscar">Buscar</button>
+      <button class="button-19"  @click="buscar">Buscar</button>
     </p>
 
     <div v-if="localizacoes.length > 0">
@@ -93,21 +93,80 @@ export default {
 </template>
 
 <style>
+body {
+  color: black;
+}
+
 .p {
   display: grid;
   grid-template-columns: 500px 500px 500px;
 }
 
-.textdados {
-  position: relative;
-  padding-top: 15px;
-  position: absolute;
-  top: 50%;
-  padding: 30px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+.button-19 {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin-left: 10px;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
 }
+
+.button-19:after {
+  background-clip: padding-box;
+  background-color: #78A6F5;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-19:main,
+.button-19:focus {
+  user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+  cursor: auto;
+}
+
+input{
+  height: 40px;
+}
+
+
+
 
 .icon {
   height: 120px;
@@ -125,26 +184,6 @@ export default {
   line-height: 1.5;
 }
 
-.content2 {
-  position: relative;
-  height: 250px;
-  width: 1200px;
-  margin: 45px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 2px solid;
-  border-color: black;
-  border-radius: 0px 16px 0px 16px;
-}
-
-.dadosh1 {
-  position: absolute;
-  padding-top: 15px;
-  top: 10px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
 
 .climah1 {
   position: absolute;
@@ -156,9 +195,10 @@ export default {
 }
 
 .content {
+  background-color: #78A6F5;
   top: 20px;
   border: 2px solid;
-  border-color: black;
+  border-color: white;
   height: 600px;
   width: 400px;
   position: relative;
