@@ -66,7 +66,7 @@ export default {
       </p>
     </div>
   </article>
-  <main>
+  <main class="p">
     <div class="content" v-for="(item, i) of resultados" :key="i">
       <h1 class="climah1">Clima {{ item.location_info.name }}</h1>
       <ul class="climaul">
@@ -93,6 +93,11 @@ export default {
 </template>
 
 <style>
+.p {
+  display: grid;
+  grid-template-columns: 500px 500px 500px;
+}
+
 .textdados {
   position: relative;
   padding-top: 15px;
@@ -155,10 +160,11 @@ export default {
   border: 2px solid;
   border-color: black;
   height: 600px;
-  width: 500px;
+  width: 400px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   border-radius: 16px 0px 16px 0px;
+  margin-top: 50px;
 }
 </style>
