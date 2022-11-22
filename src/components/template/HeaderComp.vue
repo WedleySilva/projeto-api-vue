@@ -21,7 +21,7 @@ header {
   font-family: 'Nanum Gothic', sans-serif;
   padding: 40px;
   text-align: center;
-  background: #78A6F5;
+  background-image: linear-gradient(to right, #78A6F5 , rgb(82, 202, 188));
   color: #F9F9F9;
   font-size: 30px;
 }

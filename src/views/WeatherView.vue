@@ -48,7 +48,7 @@ export default {
 
 <template>
   <article>
-    <p>
+    <p class="inputs">
       <span> Busca: </span>
       <input type="text" v-model="search" placeholder="Buscar localização" />
       <button class="button-19"  @click="buscar">Buscar</button>
@@ -97,6 +97,12 @@ body {
   color: black;
 }
 
+.inputs{
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .p {
   display: grid;
   grid-template-columns: 500px 500px 500px;
@@ -129,6 +135,7 @@ body {
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  height: 48px;
 
 }
 
@@ -147,7 +154,6 @@ body {
   z-index: -1;
 }
 
-.button-19:main,
 .button-19:focus {
   user-select: auto;
 }
@@ -163,6 +169,7 @@ body {
 
 input{
   height: 40px;
+  border-radius: 5px;
 }
 
 
@@ -183,7 +190,6 @@ input{
   list-style: none;
   line-height: 1.5;
 }
-
 
 .climah1 {
   position: absolute;
@@ -206,5 +212,6 @@ input{
   margin-right: auto;
   border-radius: 16px 0px 16px 0px;
   margin-top: 50px;
+  box-shadow: 10px 4px 7px #545454;
 }
 </style>
