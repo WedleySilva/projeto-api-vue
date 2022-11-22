@@ -201,8 +201,8 @@ input{
 }
 
 .content {
-  background-color: #78A6F5;
-  top: 20px;
+  background-image: linear-gradient(to bottom, #78A6F5 , #b6d0fc ,#ffffff  );
+  top: 20px; transition: 2s ;
   border: 2px solid;
   border-color: white;
   height: 600px;
