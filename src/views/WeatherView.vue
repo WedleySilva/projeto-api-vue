@@ -13,7 +13,6 @@ export default {
       nova_previsão: [],
       novo_dia: [],
       location_info: [],
-      resultados: [],
     };
   },
 
@@ -42,6 +41,9 @@ export default {
       // console.log(this.atual_clima);
       this.resultados.push({ location_info, atual_clima });
     },
+    getImgUrl(symbol) {
+      return `https://developer.foreca.com/static/images/symbols/${symbol}.png`;
+    },
   },
 };
 </script>
@@ -50,44 +52,50 @@ export default {
   <article>
     <p class="inputs">
       <span> </span>
-      <input type="text" v-model="search" placeholder="Buscar localização" />
-      <button class="button-19"  @click="buscar">Buscar</button>
+      <input
+        @keyup.enter="buscar"
+        type="text"
+        v-model="search"
+        placeholder="Buscar localização"
+      />
+      <button class="button-19" @click="buscar">Buscar</button>
     </p>
 
     <div v-if="localizacoes.length > 0">
-      <h2>Localizações</h2>
+      <h2>Resultados:</h2>
       <p
         v-for="local of localizacoes"
         :key="local.id"
         @click="atualizarDados(local.id)"
       >
-        {{ local.name }} / {{ local.adminArea }} {{ local.country }} /
-        {{ local.timezone }}
+        <!-- {{ local.name }} / {{ local.adminArea }} {{ local.country }} /
+        {{ local.timezone }} -->
       </p>
     </div>
+    <div v-else>Não encontrado</div>
   </article>
   <main class="p">
-    <div class="content" v-for="(item, i) of resultados" :key="i">
-      <h1 class="climah1">Clima {{ item.location_info.name }}</h1>
-      <ul class="climaul">
-        <h3>
-          <li>País: {{ item.location_info.country }}</li>
-          <li>Cidade: {{ item.location_info.name }}</li>
-          <li>Hora: {{ item.atual_clima.time }}</li>
-          <li>Temperatura: {{ item.atual_clima.temperature }} °C</li>
-          <li>Sensação Térmica: {{ item.atual_clima.feelsLikeTemp }} °</li>
-          <li>Umidade: {{ item.atual_clima.relHumidity }}</li>
-          <li>Pressão: {{ item.atual_clima.pressure }} atm</li>
-          <li>Velocidade do Vento: {{ item.atual_clima.windSpeed }} m/s</li>
-          <li>
-            Probabilidade de trovões: {{ item.atual_clima.thunderProb }} %
-          </li>
-        </h3>
-        <img
-          class="icon"
-          src="https://cdn-icons-png.flaticon.com/512/3937/3937493.png"
-        />
-      </ul>
+    <div class="content">
+      <div class="card" v-for="(item, i) of resultados" :key="i">
+        <h1 class="climah1">Clima {{ item.location_info.name }}</h1>
+        <ul class="climaul">
+          <h3>
+            <li>ID: {{ item.location_info.id }}</li>
+            <li>País: {{ item.location_info.country }}</li>
+            <li>Cidade: {{ item.location_info.name }}</li>
+            <li>Hora: {{ item.atual_clima.time }}</li>
+            <li>Temperatura: {{ item.atual_clima.temperature }} °C</li>
+            <li>Sensação Térmica: {{ item.atual_clima.feelsLikeTemp }} °</li>
+            <li>Umidade: {{ item.atual_clima.relHumidity }}</li>
+            <li>Pressão: {{ item.atual_clima.pressure }} atm</li>
+            <li>Velocidade do Vento: {{ item.atual_clima.windSpeed }} m/s</li>
+            <li>
+              Probabilidade de trovões: {{ item.atual_clima.thunderProb }} %
+            </li>
+          </h3>
+          <img class="icon" :src="getImgUrl(item.atual_clima.symbol)" />
+        </ul>
+      </div>
     </div>
   </main>
 </template>
@@ -97,30 +105,25 @@ body {
   color: black;
 }
 
-.inputs{
+.inputs {
   text-align: center;
   font-size: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.p {
-  display: grid;
-  grid-template-columns: 500px 500px 500px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .button-19 {
   appearance: button;
-  background-color: #1899D6;
+  background-color: #1899d6;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
-  font-family: din-round,sans-serif;
+  font-family: din-round, sans-serif;
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   line-height: 20px;
   margin-left: 10px;
   outline: none;
@@ -130,18 +133,17 @@ body {
   text-transform: uppercase;
   touch-action: manipulation;
   transform: translateZ(0);
-  transition: filter .2s;
+  transition: filter 0.2s;
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
   height: 48px;
-
 }
 
 .button-19:after {
   background-clip: padding-box;
-  background-color: #78A6F5;
+  background-color: #78a6f5;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -167,13 +169,11 @@ body {
   cursor: auto;
 }
 
-input{
+input {
   height: 40px;
   border-radius: 5px;
+  padding-left: 5px;
 }
-
-
-
 
 .icon {
   height: 120px;
@@ -200,9 +200,10 @@ input{
   transform: translate(-50%, -50%);
 }
 
-.content {
-  background-image: linear-gradient(to bottom, #78A6F5 , #b6d0fc ,#ffffff  );
-  top: 20px; transition: 2s ;
+.card {
+  background-image: linear-gradient(to bottom, #78a6f5, #b6d0fc, #ffffff);
+  top: 20px;
+  transition: 2s;
   border: 2px solid;
   border-color: white;
   height: 600px;
@@ -211,7 +212,11 @@ input{
   margin-left: auto;
   margin-right: auto;
   border-radius: 16px 0px 16px 0px;
-  margin-top: 50px;
   box-shadow: 10px 4px 7px #545454;
+  margin-bottom: 100px;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

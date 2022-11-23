@@ -1,28 +1,31 @@
 <script>
 import HeaderComp from "@/components/template/HeaderComp.vue";
-import MainComp from "@/components/template/MainComp.vue";
-
+// import MainComp from "@/components/template/MainComp.vue";
 
 export default {
   name: "HomeView",
-  components: { HeaderComp, MainComp },
+  components: { HeaderComp },
 };
 </script>
 
 <template>
   <header-comp />
   <RouterView />
-  <MainComp />
-
+  <!-- <MainComp />   -->
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+main {
+  font-family: "Nanum Gothic", sans-serif;
+  height: 320px;
+}
 
 body {
-  background-color: #BFC9DB;
+  background-color: #bfc9db;
   margin: 0;
-  color: #50545C;
+  color: #50545c;
 }
 
 a {
@@ -31,6 +34,6 @@ a {
 }
 
 .router-link-active {
-  color: #50545C;
+  color: #50545c;
 }
 </style>

@@ -3,14 +3,21 @@
 
 <template>
   <main>
-    <h1>Início do Site/Home</h1>
+    <h1 class="titulo-home">Início do Site/Home</h1>
     <div class="box">
     </div>
   </main>
 </template>
 
 <style>
+
+.titulo-home{
+  display: flex;
+  justify-content: center;
+}
+
 .box {
+
   top: 20px;
   border: 2px solid;
   border-color: white;

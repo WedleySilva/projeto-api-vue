@@ -7,7 +7,6 @@
       <span></span>
       <span class="clic"> <RouterLink  to="/weather">Clima</RouterLink> </span>
       <span></span>
-      <span class="clic"> <RouterLink  to="/about">Sobre</RouterLink> </span>
     </div>
   </header>
 </template>
@@ -42,7 +41,7 @@ header {
 }
 
 .clic:hover{
-  background-color: rgb(58, 151, 238);
+  background-color: rgb(179, 233, 255);
   transition: background 1s ;
 }
 
