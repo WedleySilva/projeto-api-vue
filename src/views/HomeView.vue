@@ -1,8 +1,10 @@
+<script>
+</script>
+
 <template>
   <main>
     <h1>Início do Site/Home</h1>
     <div class="box">
-
     </div>
   </main>
 </template>

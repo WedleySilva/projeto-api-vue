@@ -49,7 +49,7 @@ export default {
 <template>
   <article>
     <p class="inputs">
-      <span> Busca: </span>
+      <span> </span>
       <input type="text" v-model="search" placeholder="Buscar localização" />
       <button class="button-19"  @click="buscar">Buscar</button>
     </p>
