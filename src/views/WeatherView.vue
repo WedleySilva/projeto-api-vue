@@ -5,6 +5,7 @@ const forecaApi = new ForecaAPI();
 export default {
   data() {
     return {
+      buscando: false,
       search: "",
       localizacoes: [],
       resultados: [],
@@ -22,14 +23,24 @@ export default {
     // this.resultados = resultados.locations;
     // console.log(this.resultados);
   },
+
   methods: {
+    async buscarDados() {
+      console.log(this.buscando)
+      for (const local of this.localizacoes) {
+        await this.atualizarDados(local.id);
+      }
+    },
+
     async buscar() {
+      // clearInterval(this.buscando);
+      this.$forceUpdate();
       this.resultados = [];
+      this.localizacoes = [];
       if (this.search.trim() !== "") {
         this.localizacoes = await forecaApi.LocationSearch(this.search);
-        for (const local of this.localizacoes) {
-          await this.atualizarDados(local.id);
-        }
+        // this.buscando = setInterval(() => this.buscarDados(), 100);
+        await this.buscarDados()
       }
     },
     async atualizarDados(local) {
