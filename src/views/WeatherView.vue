@@ -26,7 +26,7 @@ export default {
 
   methods: {
     async buscarDados() {
-      console.log(this.buscando)
+      console.log(this.buscando);
       for (const local of this.localizacoes) {
         await this.atualizarDados(local.id);
       }
@@ -40,7 +40,7 @@ export default {
       if (this.search.trim() !== "") {
         this.localizacoes = await forecaApi.LocationSearch(this.search);
         // this.buscando = setInterval(() => this.buscarDados(), 100);
-        await this.buscarDados()
+        await this.buscarDados();
       }
     },
     async atualizarDados(local) {
@@ -78,12 +78,9 @@ export default {
         v-for="local of localizacoes"
         :key="local.id"
         @click="atualizarDados(local.id)"
-      >
-        <!-- {{ local.name }} / {{ local.adminArea }} {{ local.country }} /
-        {{ local.timezone }} -->
-      </p>
+      ></p>
     </div>
-    <div v-else>Não encontrado</div>
+    <div v-else><h2>Não encontrado</h2></div>
   </article>
   <main class="p">
     <div class="content">
@@ -93,6 +90,7 @@ export default {
           <h3>
             <li>ID: {{ item.location_info.id }}</li>
             <li>País: {{ item.location_info.country }}</li>
+            <li>Estado: {{ item.location_info.adminArea }}</li>
             <li>Cidade: {{ item.location_info.name }}</li>
             <li>Hora: {{ item.atual_clima.time }}</li>
             <li>Temperatura: {{ item.atual_clima.temperature }} °C</li>
