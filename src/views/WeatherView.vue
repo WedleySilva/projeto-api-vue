@@ -222,7 +222,7 @@ input {
   margin-right: auto;
   border-radius: 16px 0px 16px 0px;
   box-shadow: 10px 4px 7px #545454;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .content {
   display: flex;
