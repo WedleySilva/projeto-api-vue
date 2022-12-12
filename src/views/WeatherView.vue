@@ -17,13 +17,6 @@
       };
     },
 
-    async created() {
-      await this.atualizarDados(103459712);
-      // const resultados = await forecaApi.LocationSearch("Brasil");
-      // this.resultados = resultados.locations;
-      // console.log(this.resultados);
-    },
-
     methods: {
       async buscarDados() {
         console.log(this.buscando);
@@ -67,24 +60,25 @@
         @keyup.enter="buscar"
         type="text"
         v-model="search"
-        placeholder="Buscar localização"
+        placeholder="Buscar clima de cidades"
       />
       <button class="button-19" @click="buscar">Buscar</button>
     </p>
 
     <div v-if="localizacoes.length > 0">
-      <h2>Resultados:</h2>
+      <h2>Cidades encontradas:</h2>
       <p
         v-for="local of localizacoes"
         :key="local.id"
         @click="atualizarDados(local.id)"
       ></p>
     </div>
-    <div v-else><h2>Não encontrado</h2></div>
+    <div v-else><h2>Nenhuma busca realizada!</h2></div>
   </article>
   <main class="p">
     <div class="box">
       <div class="content">
+        <h1>Pesquise o nome da cidade que deseja procurar e aguarde por resultados...</h1>
         <div class="card" v-for="(item, i) of resultados" :key="i">
           <h1 class="climah1">
             Clima {{ item.location_info.name }} -
