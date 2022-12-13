@@ -76,9 +76,9 @@
     <div v-else><h2>Nenhuma busca realizada!</h2></div>
   </article>
   <main class="p">
+     <h1>Pesquise o nome da cidade que deseja procurar e aguarde por resultados...</h1>
     <div class="box">
       <div class="content">
-        <h1>Pesquise o nome da cidade que deseja procurar e aguarde por resultados...</h1>
         <div class="card" v-for="(item, i) of resultados" :key="i">
           <h1 class="climah1">
             Clima {{ item.location_info.name }} -
