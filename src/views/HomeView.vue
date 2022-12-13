@@ -1,46 +1,26 @@
 <script>
-import ForecaAPI from "@/api/weatherapi.js";
-const forecaApi = new ForecaAPI();
+// import ForecaAPI from "@/api/weatherapi.js";
+// const forecaApi = new ForecaAPI();
 import { mapStores, mapActions, mapState } from "pinia";
 import { useClimaStore } from "@/stores/clima";
 
 export default {
   data() {
     return {
-      buscando: false,
       search: "",
-      localizacoes_id: [
-        103474574, 103395981, 103396016, 103663517, 103450554, 103399415,
-        103469058, 103444924, 103462377, 103388368, 103465038, 103467747,
-        103470127, 103405870, 103397277, 103464975, 103390760, 103386496,
-        103451190, 103394023, 103452925, 103662762, 103664980, 103463237,
-        103448439, 103471872, 103474574,
-      ],
-
-      dados_clima: [],
-      atual_clima: [],
-      localizacoes_info: [],
     };
   },
 
   async created() {
-    console.log(this.buscando);
-    for (const local of this.localizacoes_id) {
-      const location_info = await forecaApi.LocationInfo(local);
-      const dados_clima = await forecaApi.CurrentWeather(local);
-      const atual_clima = dados_clima.current;
-      this.localizacoes_info.push({ location_info, atual_clima });
+    if (this.localizacoes_info.length === 0) {
+      this.saveInfos();
     }
-  },
-  unmounted() {
-    if (this.localizacoes_estado_infos != []) {
-      this.saveInfos(this.localizacoes_info);
-    }
+    console.log(this.localizacoes_info);
   },
 
   computed: {
     ...mapStores(useClimaStore),
-    ...mapState(useClimaStore, ["localizacoes_estado_infos"]),
+    ...mapState(useClimaStore, ["localizacoes_info"]),
   },
   methods: {
     ...mapActions(useClimaStore, ["saveInfos", "deleteInfos"]),
@@ -54,6 +34,7 @@ export default {
 <template>
   <main class="p">
     <h1 class="titulo">Clima das Capitais Brasileiras</h1>
+    <button @click="deleteInfos()">Limpar</button>
     <div class="box">
       <div class="content">
         <div class="card" v-for="(item, i) of localizacoes_info" :key="i">
