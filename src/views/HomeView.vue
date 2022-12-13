@@ -10,12 +10,13 @@ export default {
       buscando: false,
       search: "",
       localizacoes_id: [
-        103662574, 103395981, 103396016, 103663517, 103450554, 103399415,
+        103474574, 103395981, 103396016, 103663517, 103450554, 103399415,
         103469058, 103444924, 103462377, 103388368, 103465038, 103467747,
         103470127, 103405870, 103397277, 103464975, 103390760, 103386496,
         103451190, 103394023, 103452925, 103662762, 103664980, 103463237,
         103448439, 103471872, 103474574,
       ],
+
       dados_clima: [],
       atual_clima: [],
       localizacoes_info: [],
@@ -32,7 +33,7 @@ export default {
     }
   },
   unmounted() {
-    if (this.localizacoes_estado_infos === []) {
+    if (this.localizacoes_estado_infos != []) {
       this.saveInfos(this.localizacoes_info);
     }
   },

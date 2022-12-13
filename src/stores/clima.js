@@ -6,7 +6,9 @@ export const useClimaStore = defineStore("clima", () => {
   const localizacoes_estado_info = useStorage("localizacoes", []);
 
   function saveInfos(localizacoes) {
-    localizacoes_estado_info.value = localizacoes;
+    if (localizacoes != null) {
+      localizacoes_estado_info.value.push(localizacoes);
+    }
   }
   function deleteInfos() {
     localizacoes_estado_info.value = [];
