@@ -3,9 +3,9 @@
     <img src="@/assets/logosite.png" alt="" />
 
     <div class="menu">
-      <button class="click"> <RouterLink to="/">Home</RouterLink> </button>
+       <RouterLink to="/"><button class="click">Home</button></RouterLink> 
 
-      <button class="click"> <RouterLink to="/weather">Clima</RouterLink> </button>
+       <RouterLink to="/weather"><button class="click">Clima</button></RouterLink> 
     </div>
   </header>
 </template>
@@ -43,7 +43,7 @@ header {
   font-size: 13px;
   position: relative;
   overflow: hidden;
-  outline: 2px solid ##2BACD7;
+  outline: 2px solid #2BACD7;
   margin-left: 20px;
 }
 
