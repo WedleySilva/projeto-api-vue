@@ -3,10 +3,9 @@
     <img src="@/assets/logosite.png" alt="" />
 
     <div class="menu">
-      <span class="clic"> <RouterLink to="/">Home</RouterLink> </span>
-      <span></span>
-      <span class="clic"> <RouterLink to="/weather">Clima</RouterLink> </span>
-      <span></span>
+      <button class="click"> <RouterLink to="/">Home</RouterLink> </button>
+
+      <button class="click"> <RouterLink to="/weather">Clima</RouterLink> </button>
     </div>
   </header>
 </template>
@@ -14,38 +13,67 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 
-header span {
-  padding: 0 20px;
-}
+
 
 header {
   font-family: "Nanum Gothic", sans-serif;
-  padding: 40px;
+  padding: 10px;
   display: flex;
   align-items: center;
   text-align: center;
-  background-image: linear-gradient(to right, rgb(82, 188, 202), #78a6f5);
-  font-size: 30px;
+  background-color: #2BACD7;
+  font-size: 25px;
   justify-content: space-between;
 }
 
 .menu {
-  margin-right: 15rem;
+  margin-right: 20px;
 }
 
-.clic {
-  color: black;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 3px 3px 3px rgb(77, 77, 77);
+.click {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #78a6f5;
+  transition: all 1000ms;
+  font-size: 13px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid ##2BACD7;
+  margin-left: 20px;
 }
 
-.clic:hover {
-  background-color: rgb(179, 233, 255);
-  transition: background 1s;
+.click:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid #78a6f5;
+  box-shadow: 4px 5px 17px -4px #2BACD7;
 }
+
+.click::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #78a6f5;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.click:hover::before {
+  width: 250%;
+}
+
 
 img {
-  width: 10rem;
+  width: 130px;
+  filter: drop-shadow(4px 3px 4px #1F1F1F);
 }
 </style>
