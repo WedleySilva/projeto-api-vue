@@ -33,7 +33,7 @@ export default {
 
 <template>
   <main class="p">
-    <button @click="deleteInfos()">Limpar</button>
+    <button @click="deleteInfos()" class="limparButton">Limpar</button>
     <div class="content">
       <div class="card" v-for="(item, i) of localizacoes_info" :key="i">
         <h1 class="climah1">
