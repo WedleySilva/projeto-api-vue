@@ -19,11 +19,10 @@ export default {
 
 main {
   font-family: "Poppins", sans-serif;
-  height: 320px;
 }
 
 body {
-  background-color: #bfc9db;
+  background-color: #e4e4e6;
   margin: 0;
   color: #50545c;
 }
